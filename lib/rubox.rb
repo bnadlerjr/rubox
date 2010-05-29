@@ -1,5 +1,6 @@
 require "net/http"
 require "xmlsimple"
+require "rubox/user"
 
 class Rubox
   def initialize(api_key)
@@ -28,12 +29,20 @@ class Rubox
   end
 
   def parse_response(name, response)
-    xml_response = XmlSimple.xml_in(response)
+    xml_response = XmlSimple.xml_in(response, 'ForceArray' => false)
     case name
     when :get_ticket
       xml_response['ticket'].to_s
     when :get_auth_token
       xml_response['auth_token'].to_s
+    when :logout
+      'logout_ok' == xml_response['status'].to_s ? true : false
+    when :register_new_user
+      'successful_register' == xml_response['status'].to_s ? true : false
+    when :verify_registration_email
+      'email_ok' == xml_response['status'].to_s ? true : false
+    when :get_account_info
+      User.load_from_xml(xml_response)
     end
   end
 end
