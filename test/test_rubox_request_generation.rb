@@ -1,13 +1,11 @@
-require "rubygems"
-require "test/unit"
-require "mocha"
-require "rubox"
+require "#{File.dirname(__FILE__)}/test_helper"
 
 class TestRuboxRequestGeneration < Test::Unit::TestCase
   URL_BASE = "https://www.box.net/api/1.0/rest?"
 
   def setup
     @rubox = Rubox.new("rrc1d3ntb53tt6b2vhail6rdtrsxov3v")
+    @rubox.stubs(:parse_response).returns('')
   end
 
   def test_can_initialize
