@@ -1,0 +1,23 @@
+require 'rake'
+require 'rake/testtask'
+
+TEST_FILES = FileList['test/**/test_*.rb']
+
+Rake::TestTask.new do |t|
+  t.test_files = TEST_FILES
+end
+
+# Enable rcov if it's installed
+begin
+  require 'rcov/rcovtask'
+  
+  Rcov::RcovTask.new do |t|
+    t.test_files = TEST_FILES
+    t.output_dir = 'doc/coverage'
+    t.rcov_opts << '-x /Library/Ruby/Gems/1.8/gems'
+  end
+rescue LoadError
+  puts 'RCov not installed. RCov related tasks are not available.'
+end
+
+task :default => ['test']
