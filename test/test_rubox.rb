@@ -3,7 +3,7 @@ require "test/unit"
 require "mocha"
 require "rubox"
 
-class TestRubox < Test::Unit::TestCase
+class TestRuboxRequestGeneration < Test::Unit::TestCase
   URL_BASE = "https://www.box.net/api/1.0/rest?"
 
   def setup
