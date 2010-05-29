@@ -2,7 +2,7 @@ require "#{File.dirname(__FILE__)}/test_helper"
 
 class TestRuboxAuthenticationApi < Test::Unit::TestCase
   def setup
-    @rubox = Rubox.new('rrc1d3ntb53tt6b2vhail6rdtrsxov3v')
+    @rubox = Rubox::Client.new('rrc1d3ntb53tt6b2vhail6rdtrsxov3v')
   end
 
   def test_can_get_ticket
@@ -104,7 +104,7 @@ RESP
 RESP
 
     @rubox.stubs(:http_get).returns(response)
-    expected = User.new do |u|
+    expected = Rubox::User.new do |u|
       u.login = 'email@example.com'
       u.email = 'email@example.com'
       u.access_id = 398387

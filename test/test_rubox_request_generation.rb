@@ -4,7 +4,7 @@ class TestRuboxRequestGeneration < Test::Unit::TestCase
   URL_BASE = "https://www.box.net/api/1.0/rest?"
 
   def setup
-    @rubox = Rubox.new("rrc1d3ntb53tt6b2vhail6rdtrsxov3v")
+    @rubox = Rubox::Client.new("rrc1d3ntb53tt6b2vhail6rdtrsxov3v")
     @rubox.stubs(:parse_response).returns('')
   end
 
