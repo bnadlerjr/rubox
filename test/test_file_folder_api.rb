@@ -38,42 +38,46 @@ created="1129537520" updated="1129537520">
 </response>
 RESP
 
-    @rubox.stubs(:http_get).returns(response)
-    file1 = Rubox::File.new do |f|
-      f.file_id = 68736
-      f.file_name = 'cows.w3g'
-      f.shared = '0'
-      f.size = 232386
-      f.created = 1129537520
-      f.updated = 1129537520
-    end
-
-    file2 = Rubox::File.new do |f|
-      f.file_id = 68737
-      f.file_name = 'silver.html'
-      f.shared = '0'
-      f.size = 15805
-      f.created = 1129537520
-      f.updated = 1129537520
-      f.tags = [35]
-    end
-
-    subfolder = Rubox::Folder.new do |f|
-      f.folder_id = 4384
-      f.name = "Incoming"
-      f.shared = '0'
-      f.tags = [34]
-      f.files = [file1, file2]
-    end
-
-    main_folder = Rubox::Folder.new do |f|
+      expected = Rubox::Folder.new do |f|
+      f.name = ''
       f.folder_id = 0
       f.shared = '0'
-      f.folders = [subfolder]
+      f.folders = [
+        Rubox::Folder.new do |f|
+          f.folder_id = 4384
+          f.name = "Incoming"
+          f.shared = '0'
+          f.tags = [34]
+          f.files = [
+            file1 = Rubox::File.new do |f|
+              f.file_id = 68736
+              f.file_name = 'cows.w3g'
+              f.shared = '0'
+              f.size = 232386
+              f.created = 1129537520
+              f.updated = 1129537520
+            end,
+            file2 = Rubox::File.new do |f|
+              f.file_id = 68737
+              f.file_name = 'silver.html'
+              f.shared = '0'
+              f.size = 15805
+              f.created = 1129537520
+              f.updated = 1129537520
+              f.tags = [35]
+            end
+          ]
+        end
+      ]
     end
+    
+    @rubox.stubs(:http_get).returns(response)
+    tree = @rubox.get_account_tree
 
-#    tree = @rubox.get_account_tree
-#    puts tree.folders['folder'].inspect
-#    assert_equal file1, tree.folders[0].files[0]
+    assert_equal expected.name, tree.name
+    assert_equal expected.folder_id, tree.folder_id
+    assert_equal expected.shared, tree.shared
+
+    compare_folder expected.folders[0], tree.folders[0]
   end
 end

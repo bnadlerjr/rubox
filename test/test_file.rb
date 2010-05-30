@@ -21,6 +21,6 @@ XML
     actual = 
       Rubox::File.build_from_xml(XmlSimple.xml_in(xml, 'ForceArray' => false))
 
-    compare_files expected, actual
+    compare_file expected, actual
   end
 end

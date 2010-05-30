@@ -2,6 +2,7 @@ require "rubygems"
 require "test/unit"
 require "mocha"
 require "rubox"
+require "pp"
 
 def assert_user_equal(a, b)
   attributes = %w[login           email         access_id 
@@ -13,7 +14,7 @@ def assert_user_equal(a, b)
   end
 end
 
-def compare_files(expected, actual)
+def compare_file(expected, actual)
   %w[file_id file_name shared size created updated].each do |attribute|
     assert_equal expected.send(attribute), 
                  actual.send(attribute), 
@@ -21,7 +22,7 @@ def compare_files(expected, actual)
   end
 end
 
-def compare_folders(expected, actual)
+def compare_folder(expected, actual)
   %w[folder_id name shared tags].each do |attribute|
     assert_equal expected.send(attribute), 
                  actual.send(attribute), 
@@ -29,6 +30,6 @@ def compare_folders(expected, actual)
   end
 
   0.upto(expected.files.count-1) do |i|
-    compare_files expected.files[i], actual.files[i]
+    compare_file expected.files[i], actual.files[i]
   end
 end

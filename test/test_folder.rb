@@ -51,6 +51,6 @@ XML
     actual = 
       Rubox::Folder.build_from_xml(XmlSimple.xml_in(xml, 'ForceArray' => false))
 
-    compare_folders expected, actual
+    compare_folder expected, actual
   end
 end

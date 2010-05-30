@@ -17,14 +17,14 @@ module Rubox
         f.folder_id = xml['id'].to_i
         f.name = xml['name']
         f.shared = xml['shared']
-        f.tags = [xml['tags']['tag']['id'].to_i]
+        f.tags = [xml['tags']['tag']['id'].to_i] if xml['tags'] && xml['tags']['tag']
 
         if xml['files']['file'] && xml['files']['file'].count > 0
           f.files = xml['files']['file'].map { |f| File.build_from_xml(f) }
         end
 
         if xml['folders'] && xml['folders'].count > 0
-          f.folders = xml['folders'].each { |f| Folder.build_from_xml(f[1]) }
+          f.folders = xml['folders'].map { |f| Folder.build_from_xml(f[1]) }
         end
       end
     end
