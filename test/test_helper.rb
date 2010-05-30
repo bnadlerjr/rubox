@@ -14,23 +14,22 @@ def assert_user_equal(a, b)
 end
 
 def compare_files(expected, actual)
-  attributes = %w[file_id file_name shared size created updated]
-
-  attributes.each do |attribute|
-    assert_equal expected.send(attribute), actual.send(attribute), "Failed on #{attribute}"
+  %w[file_id file_name shared size created updated].each do |attribute|
+    assert_equal expected.send(attribute), 
+                 actual.send(attribute), 
+                 "Failed on #{attribute}"
   end
 end
 
 def compare_folders(expected, actual)
-  attributes = %w[folder_id name shared tags]
-
-  attributes.each do |attribute|
-    assert_equal expected.send(attribute), actual.send(attribute), attribute
+  %w[folder_id name shared tags].each do |attribute|
+    assert_equal expected.send(attribute), 
+                 actual.send(attribute), 
+                 "Failed on #{attribute}"
   end
 
-  i=0
-  while i < expected.files.count
+  0.upto(expected.files.count-1) do |i|
     compare_files expected.files[i], actual.files[i]
-    i += 1
   end
+  i=0
 end
