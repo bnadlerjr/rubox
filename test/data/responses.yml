@@ -1,0 +1,96 @@
+ticket_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>get_ticket_ok</status>
+    <ticket>bxquuv025arztljze2n438md9zef95e8</ticket>
+    </response>
+
+auth_token_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>get_auth_token_ok</status>
+    <auth_token>9byo5bg8d2o3otp0voji0ej0v49bqcmo</auth_token>
+    <user>
+    <login>stas@itscript.com</login>
+    <email>stas@itscript.com</email>
+    <access_id>453</access_id>
+    <user_id>453</user_id>
+    <space_amount>2147483648</space_amount>
+    <space_used>1024</space_used>
+    <max_upload_size>26214400</max_upload_size>
+    </user>
+    </response>
+
+logout_response:
+    <?xml version='1.0' encoding='UTF-8' ?>
+    <response>
+    <status>logout_ok</status>
+    </response>
+
+register_response:
+    <?xml version='1.0' encoding='UTF-8' ?>
+    <response>
+    <status>successful_register</status>
+    <auth_token>29135479a888671e0dd6512df4f7a009</auth_token>
+    <user>
+    <login>email@example.com</login>
+    <email>email@example.com</email>
+    <access_id>398387</access_id>
+    <user_id>398387</user_id>
+    <space_amount>1073741824</space_amount>
+    <space_used>0</space_used>
+    <max_upload_size>26214400</max_upload_size>
+    </user>
+    </response>
+
+email_response:
+    <?xml version='1.0' encoding='UTF-8' ?>
+    <response>
+    <status>email_ok</status>
+    </response>
+
+account_response:
+    <?xml version='1.0' encoding='UTF-8' ?>
+    <response>
+    <status>get_account_info_ok</status>
+    <user>
+    <login>email@example.com</login>
+    <email>email@example.com</email>
+    <access_id>398387</access_id>
+    <user_id>398387</user_id>
+    <space_amount>1073741824</space_amount>
+    <space_used>0</space_used>
+    <max_upload_size>2147483648</max_upload_size>
+    </user>
+    </response>
+
+account_tree_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>listing_ok</status>
+    <tree>
+    <folder id="0" name="" shared="0">
+    <tags></tags>
+    <files></files>
+    <folders>
+    <folder id="4384" name="Incoming" shared="0">
+    <tags>
+    <tag id="34" />
+    </tags>
+    <files>
+    <file id="68736" file_name="cows.w3g" keyword="" shared="0" size="232386"
+    created="1129537520" updated="1129537520">
+    <tags> </tags>
+    </file>
+    <file id="68737" file_name="silver.html" keyword="" shared="0" size="15805"
+    created="1129537520" updated="1129537520">
+    <tags>
+    <tag id="35" />
+    </tags>
+    </file>
+    </files>
+    </folder>
+    </folders>
+    </folder>
+    </tree>
+    </response>
