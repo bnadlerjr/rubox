@@ -29,5 +29,10 @@ module Rubox
     def get_account_info
       User.load_from_xml(@xml)
     end
+
+    def get_account_tree
+      root = @xml['tree']['folder']
+      Folder.build_from_xml(root)
+    end
   end
 end

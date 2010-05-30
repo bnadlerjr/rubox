@@ -10,5 +10,20 @@ module Rubox
     def initialize
       yield self if block_given?
     end
+
+    def self.build_from_xml(xml)
+      File.new do |f|
+        f.id = xml['id'].to_i
+        f.file_name = xml['file_name']
+        f.user_id = xml['user_id']
+        f.description = xml['description']
+        f.shared = xml['shared']
+        f.shared_link = xml['shared_link']
+        f.created = xml['created'].to_i
+        f.updated = xml['updated'].to_i
+        f.size = xml['size'].to_i
+        f.tags = xml['tags']
+      end
+    end
   end
 end

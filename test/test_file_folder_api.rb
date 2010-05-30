@@ -63,7 +63,7 @@ RESP
       f.name = "Incoming"
       f.shared = '0'
       f.tags = [34]
-      files = [file1, file2]
+      f.files = [file1, file2]
     end
 
     main_folder = Rubox::Folder.new do |f|
@@ -72,6 +72,8 @@ RESP
       f.folders = [subfolder]
     end
 
-#    assert_equal main_folder, @rubox.get_account_tree
+    tree = @rubox.get_account_tree
+#    puts tree.folders['folder'].inspect
+#    assert_equal file1, tree.folders[0].files[0]
   end
 end
