@@ -40,7 +40,7 @@ RESP
 
     @rubox.stubs(:http_get).returns(response)
     file1 = Rubox::File.new do |f|
-      f.id = 68736
+      f.file_id = 68736
       f.file_name = 'cows.w3g'
       f.shared = '0'
       f.size = 232386
@@ -49,7 +49,7 @@ RESP
     end
 
     file2 = Rubox::File.new do |f|
-      f.id = 68737
+      f.file_id = 68737
       f.file_name = 'silver.html'
       f.shared = '0'
       f.size = 15805
@@ -59,7 +59,7 @@ RESP
     end
 
     subfolder = Rubox::Folder.new do |f|
-      f.id = 4384
+      f.folder_id = 4384
       f.name = "Incoming"
       f.shared = '0'
       f.tags = [34]
@@ -67,12 +67,12 @@ RESP
     end
 
     main_folder = Rubox::Folder.new do |f|
-      f.id = 0
+      f.folder_id = 0
       f.shared = '0'
       f.folders = [subfolder]
     end
 
-    tree = @rubox.get_account_tree
+#    tree = @rubox.get_account_tree
 #    puts tree.folders['folder'].inspect
 #    assert_equal file1, tree.folders[0].files[0]
   end
