@@ -31,5 +31,4 @@ def compare_folders(expected, actual)
   0.upto(expected.files.count-1) do |i|
     compare_files expected.files[i], actual.files[i]
   end
-  i=0
 end
