@@ -1,3 +1,4 @@
+require "rubox/ext/hash_extensions"
 require "rubox/client"
 require "rubox/user"
 require "rubox/folder"

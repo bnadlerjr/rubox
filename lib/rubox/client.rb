@@ -8,11 +8,7 @@ module Rubox
     end
 
     def method_missing(name, *args)
-      if args && args.count != 0
-        params = "&#{get_querystring(args[0])}"
-      else
-        params = ''
-      end
+      params = parse_args(args)
 
       response = 
         http_get("#{@base_url}action=#{name}&api_key=#{@api_key}#{params}")
@@ -26,8 +22,13 @@ module Rubox
       Net::HTTP.get_response(URI.parse(url)).body.to_s
     end
 
-    def get_querystring(args)
-      args.map { |k, v| "#{k}=#{v}" }.join('&')
+    def parse_args(args)
+      if args && args.count != 0
+        raise ArgumentError unless args[0].is_a?(Hash)
+        return "&#{args[0].extend(HashExtensions).to_querystring}"
+      else
+        return ''
+      end
     end
   end
 end

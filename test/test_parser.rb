@@ -7,6 +7,7 @@ class TestParser < Test::Unit::TestCase
     @responses = File.open(response_file) { |y| YAML::load(y) }
   end
 
+  # Authentication Tests
   def test_can_get_ticket
     parser = Rubox::Parser.new(@responses['ticket_response'])
     assert_equal "bxquuv025arztljze2n438md9zef95e8", parser.get_ticket
@@ -47,6 +48,7 @@ class TestParser < Test::Unit::TestCase
     assert_user_equal expected, parser.get_account_info
   end
 
+  # File & Folder Operations
   def test_can_get_account_tree
       expected = Rubox::Folder.new do |f|
       f.name = ''
