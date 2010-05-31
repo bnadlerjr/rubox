@@ -94,3 +94,69 @@ account_tree_response:
     </folder>
     </tree>
     </response>
+
+create_folder_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>create_ok</status>
+    <folder>
+    <folder_id>738</folder_id>
+    <folder_name>New Folder</folder_name>
+    <folder_type_id>0</folder_type_id>
+    <user_id>453</user_id>
+    <path></path>
+    <shared>1</shared>
+    <public_name>gh23ghjj</public_name>
+    <show_comments></show_comments>
+    <parent_folder_id>0</parent_folder_id>
+    <password></password>
+    </folder>
+    </response>
+
+move_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>s_move_node</status>
+    </response>
+
+copy_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>s_copy_node</status>
+    </response>
+
+rename_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>s_rename_node</status>
+    </response>
+
+delete_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>s_delete_node</status>
+    </response>
+
+get_file_info_response:
+    <?xml version='1.0' encoding='UTF-8' ?>
+    <response>
+    <status>s_get_file_info</status>
+    <info>
+    <file_id>224</file_id>
+    <file_name>Box Press Release.doc</file_name>
+    <folder_id>0</folder_id>
+    <shared>0</shared>
+    <shared_name></shared_name>
+    <size>22528</size>
+    <description></description>
+    <sha1>9a0bc49038c167151c544ac0b5fc9042335a41a3</sha1>
+    <created>1182159570</created>
+    <updated>1182159571</updated>
+    </info>
+    </response>
+
+set_description_response:
+    <?xml version='1.0' encoding='UTF-8' ?>
+    <response>
+    <status>s_set_description</status>
+    </response>

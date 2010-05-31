@@ -33,3 +33,15 @@ def compare_folder(expected, actual)
     compare_file expected.files[i], actual.files[i]
   end
 end
+
+def compare_info(expected, actual)
+  attributes = %w[file_id     file_name folder_id   shared 
+                  shared_name size      description sha1 
+                  created     updated]
+
+  attributes.each do |attribute|
+    assert_equal expected.send(attribute),
+                 actual.send(attribute),
+                 "Failed on #{attribute}"
+  end
+end

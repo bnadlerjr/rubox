@@ -31,8 +31,35 @@ module Rubox
     end
 
     def get_account_tree
-      root = @xml['tree']['folder']
-      Folder.build_from_xml(root)
+      Folder.build_from_xml(@xml['tree']['folder'])
+    end
+
+    def create_folder
+      'create_ok' == @xml['status'] ? true : false
+    end
+
+    def move
+      's_move_node' == @xml['status'] ? true : false
+    end
+
+    def copy
+      's_copy_node' == @xml['status'] ? true : false
+    end
+
+    def rename
+      's_rename_node' == @xml['status'] ? true : false
+    end
+
+    def delete
+      's_delete_node' == @xml['status'] ? true : false
+    end
+
+    def get_file_info
+      Info.build_from_xml(@xml['info'])
+    end
+
+    def set_description
+      's_set_description' == @xml['status'] ? true : false
     end
   end
 end

@@ -93,4 +93,50 @@ class TestParser < Test::Unit::TestCase
     compare_folder expected.folders[0], tree.folders[0]
   end
 
+  def test_can_create_folder
+    parser = Rubox::Parser.new(@responses['create_folder_response'])
+    assert parser.create_folder
+  end
+
+  def test_can_move
+    parser = Rubox::Parser.new(@responses['move_response'])
+    assert parser.move
+  end
+
+  def test_can_copy
+    parser = Rubox::Parser.new(@responses['copy_response'])
+    assert parser.copy
+  end
+
+  def test_can_rename
+    parser = Rubox::Parser.new(@responses['rename_response'])
+    assert parser.rename
+  end
+
+  def test_can_delete
+    parser = Rubox::Parser.new(@responses['delete_response'])
+    assert parser.delete
+  end
+
+  def test_can_get_file_info
+    parser = Rubox::Parser.new(@responses['get_file_info_response'])
+
+    expected = Rubox::Info.new do |f|
+      f.file_id = 224
+      f.file_name = 'Box Press Release.doc'
+      f.folder_id = 0
+      f.shared = '0'
+      f.size = 22528
+      f.sha1 = '9a0bc49038c167151c544ac0b5fc9042335a41a3'
+      f.created = 1182159570
+      f.updated = 1182159571
+    end
+
+    compare_file expected, parser.get_file_info
+  end
+
+  def test_can_set_description
+    parser = Rubox::Parser.new(@responses['set_description_response'])
+    assert parser.set_description
+  end
 end
