@@ -1,0 +1,73 @@
+= Rubox
+A Ruby based client library for the Box.net REST API.
+
+== Author
+Bob Nadler, Jr. 
+Website:: http://bobnadler.com
+Email:: thethirdswitch [at] gmail [dot] com
+Docs:: http://bobnadler.com/rubox
+
+== Installation
+=== Git
+<tt>git clone http://thethirdswitch.github.com/rubox</tt>
+
+=== Gem
+<tt>sudo gem install rubox</tt>
+
+== Description
+Provides a client interface to the Box.net API. It relies on the REST version 
+of the API, version 1.0. For a listing of available API calls see the 
+documentation for the Box.net API which can be found at
+http://developers.box.net/ApiOverview.
+
+This library has two main parts: Rubox::Client and Rubox::Parser. From an 
+end user perspective you will only need to interact directly with 
+Rubox::Client.
+
+After creating a new Rubox::Client object with your API key, it will accept 
+any valid Box.net API action as a message. If the API action requires any 
+parameters, they can be passed as a Hash. Once the Rubox::Client makes
+the API call, the response is parsed by the Rubox::Parser and returned.
+
+If the response includes an API object, that object is returned (i.e. 
+Rubox::User, Rubox::File, Rubox::Folder, or Rubox::Info).
+
+=== Examples
+<tt>require "rubox"</tt>
+
+<tt>client = Rubox::Client.new('your_api_key')</tt>
+
+<tt>client.get_ticket # => 'an_api_ticket'</tt>
+
+<tt>client.set_description(:target => 'file', :target_id => '123', 
+:description => 'My description.') # => true</tt>
+
+== Project Layout
+/lib:: Main project source code.
+/test:: All test source code and data samples.
+rakefile:: Rake tasks for the project.
+README.rdoc:: This file.
+HISTORY.txt:: History of release notes, patches, bug fixes, etc.
+
+== License
+(The MIT License)
+
+Copyright (c) 2010 Bob Nadler, Jr.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
