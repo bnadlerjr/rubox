@@ -27,8 +27,10 @@ module Rubox
     # :target_id => '123', :description => 'My description.') => true
     def method_missing(name, *args)
       params = parse_args(args)
-      resp = http_get("#{@base_url}action=#{name}&api_key=#{@api_key}#{params}")
-      Parser.new(resp).send(name)
+      response = 
+        http_get("#{@base_url}action=#{name}&api_key=#{@api_key}#{params}")
+
+      Parser.new(response).send(name)
     end
 
     private

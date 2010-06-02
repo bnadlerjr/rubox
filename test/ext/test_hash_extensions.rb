@@ -8,9 +8,12 @@ class TestHashExtensions < Test::Unit::TestCase
       :ticket => 'udd863k39gn9mioc6ym2c6erbqm8q'
     }
 
-    result = args.extend(Rubox::HashExtensions).to_querystring
-    assert(result =~ /action=get_auth_token/, 'action')
-    assert(result =~ /api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v/, 'api_key')
-    assert(result =~ /ticket=udd863k39gn9mioc6ym2c6erbqm8q/, 'ticket')
+    expected = 'action=get_auth_token' +
+               '&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v' +
+               '&ticket=udd863k39gn9mioc6ym2c6erbqm8q'
+    
+    actual = args.extend(Rubox::HashExtensions).to_querystring
+
+    assert_equal expected, actual
   end
 end

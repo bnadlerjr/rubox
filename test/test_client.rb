@@ -5,7 +5,12 @@ class TestRuboxClient < Test::Unit::TestCase
 
   def setup
     @rubox = Rubox::Client.new("rrc1d3ntb53tt6b2vhail6rdtrsxov3v")
-    @rubox.stubs(:parse_response).returns('')
+    @response = <<-RESP
+<?xml version='1.0' encoding='UTF-8'?>
+<response>
+<status>ok</status>
+</response>
+RESP
   end
 
   def test_can_initialize
@@ -13,44 +18,181 @@ class TestRuboxClient < Test::Unit::TestCase
   end
 
   def test_can_create_ticket_request
-    response = <<-RESP
-<?xml version='1.0' encoding='UTF-8'?>
-<response>
-<status>get_ticket_ok</status>
-<ticket>bxquuv025arztljze2n438md9zef95e8</ticket>
-</response>
-RESP
-
     url = URL_BASE + 
-      "action=get_ticket&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v"
+      "action=get_ticket" +
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v"
 
-    @rubox.expects(:http_get).with(url).returns(response)
+    @rubox.expects(:http_get).with(url).returns(@response)
     @rubox.get_ticket
   end
 
   def test_can_create_auth_token_request
-    response = <<-RESP
-<?xml version='1.0' encoding='UTF-8'?>
-<response>
-<status>get_auth_token_ok</status>
-<auth_token>9byo5bg8d2o3otp0voji0ej0v49bqcmo</auth_token>
-<user>
-<login>stas@itscript.com</login>
-<email>stas@itscript.com</email>
-<access_id>453</access_id>
-<user_id>453</user_id>
-<space_amount>2147483648</space_amount>
-<space_used>1024</space_used>
-<max_upload_size>26214400</max_upload_size>
-</user>
-</response>
-RESP
-
     url = URL_BASE +
-      "action=get_auth_token&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v&" +
-      "ticket=udd863k39gn9mioc6ym2c6erbqm8q"
+      "action=get_auth_token" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&ticket=udd863k39gn9mioc6ym2c6erbqm8q"
 
-    @rubox.expects(:http_get).with(url).returns(response)
+    @rubox.expects(:http_get).with(url).returns(@response)
     @rubox.get_auth_token(:ticket => "udd863k39gn9mioc6ym2c6erbqm8q")
+  end
+
+  def test_can_create_logout_request
+    url = URL_BASE + 
+      "action=logout" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.logout(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf')
+  end
+
+  def test_can_create_register_new_user_request
+    url = URL_BASE + 
+      "action=register_new_user" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&login=email@example.com&password=123"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.register_new_user(:login => 'email@example.com', :password => '123')
+  end
+
+  def test_can_create_verify_registration_email_request
+    url = URL_BASE + 
+      "action=verify_registration_email" +
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&login=email@example.com"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.verify_registration_email(:login => 'email@example.com')
+  end
+
+  def test_can_create_get_account_info_request
+    url = URL_BASE + 
+      "action=get_account_info" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf"
+
+    Rubox::Parser.any_instance.stubs(:get_account_info)
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.get_account_info(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf')
+  end
+
+  def test_can_create_get_account_tree_request
+    url = URL_BASE +
+      "action=get_account_tree" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&folder_id=0" + 
+      "&params[]=nozip"
+
+    Rubox::Parser.any_instance.stubs(:get_account_tree)
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.get_account_tree(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :folder_id => 0, :params => 'nozip')
+  end
+
+  def test_can_create_a_create_folder_request
+    url = URL_BASE + 
+      "action=create_folder" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&name=New Folder" + 
+      "&parent_id=0" +
+      "&share=1"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.create_folder(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf', 
+      :parent_id => 0, :name => 'New Folder', :share => 1)
+  end
+
+  def test_can_create_move_request
+    url = URL_BASE + 
+      "action=move" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&destination_id=2" +
+      "&target=file" + 
+      "&target_id=1"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.move(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 1, 
+      :destination_id => 2)
+  end
+
+  def test_can_create_copy_request
+    url = URL_BASE + 
+      "action=copy" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&destination_id=2" +
+      "&target=file" + 
+      "&target_id=1"
+   
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.copy(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 1, 
+      :destination_id => 2)
+  end
+
+  def test_can_create_rename_request
+    url = URL_BASE + 
+      "action=rename" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&new_name=New Name" +
+      "&target=file" + 
+      "&target_id=1"
+   
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.rename(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 1, 
+      :new_name => 'New Name')
+  end
+
+  def test_can_create_delete_request
+    url = URL_BASE + 
+      "action=delete" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&target=file" + 
+      "&target_id=1"
+   
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.delete(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 1)
+  end
+
+  def test_can_create_get_file_info_request
+    url = URL_BASE + 
+      "action=get_file_info" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&file_id=1"
+   
+    Rubox::Parser.any_instance.stubs(:get_file_info)
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.get_file_info(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :file_id => 1)
+  end
+
+  def test_can_create_set_description_request
+    url = URL_BASE + 
+      "action=set_description" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&description=My new description" +
+      "&target=file" + 
+      "&target_id=1"
+   
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.set_description(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 1, 
+      :description => 'My new description')
   end
 end
