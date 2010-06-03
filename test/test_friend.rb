@@ -30,9 +30,6 @@ XML
       Rubox::Friend.build_from_xml(
         XmlSimple.xml_in(xml, 'ForceArray' => false))
 
-    assert_equal expected.name, actual.name
-    assert_equal expected.email, actual.email
-    assert_equal expected.accepted, actual.accepted
-    assert_equal expected.avatar_url, actual.avatar_url
+    compare_friend expected, actual
   end
 end

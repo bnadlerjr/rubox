@@ -270,4 +270,17 @@ RESP
       :message => 'Email message',
       :emails => ['john@example.com', 'joe@example.com'])
   end
+
+  def test_can_create_get_friends_request
+    url = URL_BASE +
+      "action=get_friends" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&params[]=nozip"
+
+    Rubox::Parser.any_instance.stubs(:get_friends)
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.get_friends(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :params => 'nozip')
+  end
 end

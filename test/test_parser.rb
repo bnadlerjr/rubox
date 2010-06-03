@@ -159,4 +159,20 @@ class TestParser < Test::Unit::TestCase
     parser = Rubox::Parser.new(@responses['request_friends_response'])
     assert parser.request_friends
   end
+
+  def test_can_get_friends
+    expected = Rubox::Friend.new do |f|
+        f.name = 'email2@example.com'
+        f.email = 'email2@example.com'
+        f.accepted = 1
+        f.avatar_url = 'http://box.net/index.php?rm=box_user_avatar' + 
+          '&user_id=398396&width=40&height=40&type=large'
+    end
+
+    parser = Rubox::Parser.new(@responses['get_friends_response'])
+    actual = parser.get_friends
+
+    assert actual.count == 1
+    compare_friend expected, actual[0]
+  end
 end

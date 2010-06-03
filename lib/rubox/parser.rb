@@ -119,8 +119,17 @@ module Rubox
       'private_share_ok' == @xml['status'] ? true : false
     end
 
+    # Parses the response given when the +request_friends+ action has been
+    # called. Returns +true+ if the friends were successfully added, otherwise
+    # +false+.
     def request_friends
       's_request_friends' == @xml['status'] ? true : false
+    end
+
+    # Parses the response given when the +get_friends+ action has been called. 
+    # Returns an array of +Friend+ objects.
+    def get_friends
+      @xml['friends']['friends'].map { |f| Friend.build_from_xml(f[1]) }
     end
   end
 end

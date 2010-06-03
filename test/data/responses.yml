@@ -185,3 +185,26 @@ request_friends_response:
     <response>
     <status>s_request_friends</status>
     </response>
+
+get_friends_response:
+    <?xml version='1.0' encoding'UTF-8'?>
+    <response>
+    <status>s_get_friends</status>
+    <friends>
+    <friends>
+    <friend>
+    <name>email2@example.com</name>
+    <email>email2@example.com</email>
+    <accepted>1</accepted>
+    <avatar_url>http://box.net/index.php?rm=box_user_avatar&user_id=398396&width=40&height=40&type=large</avatar_url>
+    <boxes>
+    <box>
+    <id>15</id>
+    <url>http://box.net/p/email2</url>
+    <status/>
+    </box>
+    </boxes>
+    </friend>
+    </friends>
+    </friends>
+    </response>

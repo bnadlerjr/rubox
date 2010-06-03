@@ -45,3 +45,12 @@ def compare_info(expected, actual)
                  "Failed on #{attribute}"
   end
 end
+
+def compare_friend(expected, actual)
+  attributes = %w[name email accepted avatar_url]
+  attributes.each do |attribute|
+    assert_equal expected.send(attribute),
+                 actual.send(attribute),
+                 "Failed on #{attribute}"
+  end
+end
