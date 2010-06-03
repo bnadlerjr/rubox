@@ -208,13 +208,25 @@ get_friends_response:
     </friends>
     </friends>
     </response>
+
 add_to_mybox_response:
     <?xml version='1.0' encoding'UTF-8'?>
     <response>
     <status>addtomybox_ok</status>
     </response>
+
 add_to_tag_response:
     <?xml version='1.0' encoding'UTF-8'?>
     <response>
     <status>addtotag_ok</status>
+    </response>
+
+export_tags_response:
+    <?xml version='1.0' encoding'UTF-8'?>
+    <response>
+    <status>export_tags_ok</status>
+    <tags>
+    <tag id="37">tag1</tag>
+    <tag id="38">tag2</tag>
+    </tags>
     </response>

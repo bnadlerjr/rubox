@@ -143,5 +143,13 @@ module Rubox
     def add_to_tag
       'addtotag_ok' == @xml['status'] ? true : false
     end
+
+    # Parses the response given when the +export_tags+ action has been invoked.
+    # Returns an Array of Hashes that contain the tag +:id+ and +:name+.
+    def export_tags
+      @xml['tags']['tag'].map do |t|
+        { :id => t['id'].to_i, :name => t['content'] }
+      end
+    end
   end
 end

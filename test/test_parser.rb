@@ -185,4 +185,13 @@ class TestParser < Test::Unit::TestCase
     parser = Rubox::Parser.new(@responses['add_to_tag_response'])
     assert parser.add_to_tag
   end
+
+  def test_can_export_tags
+    expected = [
+      { :id => 37, :name => 'tag1' },
+      { :id => 38, :name => 'tag2' }]
+
+    parser = Rubox::Parser.new(@responses['export_tags_response'])
+    assert_equal expected, parser.export_tags
+  end
 end
