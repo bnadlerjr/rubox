@@ -173,3 +173,9 @@ public_unshare_response:
     <response>
     <status>unshare_ok</status>
     </response>
+
+private_share_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>private_share_ok</status>
+    </response>

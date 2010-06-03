@@ -149,4 +149,9 @@ class TestParser < Test::Unit::TestCase
     parser = Rubox::Parser.new(@responses['public_unshare_response'])
     assert parser.public_unshare
   end
+
+  def test_can_private_share
+    parser = Rubox::Parser.new(@responses['private_share_response'])
+    assert parser.private_share
+  end
 end

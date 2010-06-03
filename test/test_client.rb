@@ -231,4 +231,26 @@ RESP
       :target => 'file',
       :target_id => 1)
   end
+
+  def test_can_create_private_share_request
+    url = URL_BASE +
+      "action=private_share" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&emails[]=john@example.com" + 
+      "&emails[]=joe@example.com" + 
+      "&message=Email message" + 
+      "&notify=true" +
+      "&target=file" + 
+      "&target_id=1"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.private_share(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 1,
+      :notify => true,
+      :message => 'Email message',
+      :emails => ['john@example.com', 'joe@example.com'])
+
+  end
 end
