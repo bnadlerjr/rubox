@@ -118,5 +118,9 @@ module Rubox
     def private_share
       'private_share_ok' == @xml['status'] ? true : false
     end
+
+    def request_friends
+      's_request_friends' == @xml['status'] ? true : false
+    end
   end
 end

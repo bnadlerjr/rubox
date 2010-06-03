@@ -251,6 +251,23 @@ RESP
       :notify => true,
       :message => 'Email message',
       :emails => ['john@example.com', 'joe@example.com'])
+  end
 
+  def test_can_create_a_request_friends_request
+    url = URL_BASE +
+      "action=request_friends" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&emails[]=john@example.com" + 
+      "&emails[]=joe@example.com" + 
+      "&message=Email message" + 
+      "&params[]=no_email" +
+      "&params[]=box_auto_subscribe"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.request_friends(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :params => ['no_email', 'box_auto_subscribe'],
+      :message => 'Email message',
+      :emails => ['john@example.com', 'joe@example.com'])
   end
 end

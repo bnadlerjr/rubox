@@ -154,4 +154,9 @@ class TestParser < Test::Unit::TestCase
     parser = Rubox::Parser.new(@responses['private_share_response'])
     assert parser.private_share
   end
+
+  def test_can_request_friends
+    parser = Rubox::Parser.new(@responses['request_friends_response'])
+    assert parser.request_friends
+  end
 end
