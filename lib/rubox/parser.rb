@@ -137,5 +137,11 @@ module Rubox
     def add_to_mybox
       'addtomybox_ok' == @xml['status'] ? true : false
     end
+
+    # Parses the response given when the +add_to_tag+ action is called. 
+    # Returns +true+ if the tags were successfully added, otherwise +false+.
+    def add_to_tag
+      'addtotag_ok' == @xml['status'] ? true : false
+    end
   end
 end

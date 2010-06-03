@@ -180,4 +180,9 @@ class TestParser < Test::Unit::TestCase
     parser = Rubox::Parser.new(@responses['add_to_mybox_response'])
     assert parser.add_to_mybox
   end
+
+  def test_can_add_to_tag
+    parser = Rubox::Parser.new(@responses['add_to_tag_response'])
+    assert parser.add_to_tag
+  end
 end

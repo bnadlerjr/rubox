@@ -284,7 +284,7 @@ RESP
       :params => 'nozip')
   end
 
-  def test_create_add_to_mybox_request
+  def test_can_create_add_to_mybox_request
     url = URL_BASE +
       "action=add_to_mybox" + 
       "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
@@ -300,6 +300,23 @@ RESP
       :file_id => 4940,
       :folder_id => 0,
       :public_name => 'some_file',
+      :tags => ['tag1', 'tag2'])
+  end
+
+  def test_can_create_add_to_tag_request
+    url = URL_BASE +
+      "action=add_to_tag" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&tags[]=tag1" +
+      "&tags[]=tag2" +
+      "&target=file" + 
+      "&target_id=0" 
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.add_to_tag(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 0,
       :tags => ['tag1', 'tag2'])
   end
 end

@@ -213,3 +213,8 @@ add_to_mybox_response:
     <response>
     <status>addtomybox_ok</status>
     </response>
+add_to_tag_response:
+    <?xml version='1.0' encoding'UTF-8'?>
+    <response>
+    <status>addtotag_ok</status>
+    </response>
