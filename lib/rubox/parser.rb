@@ -106,5 +106,11 @@ module Rubox
     def public_share
       @xml['public_name'].to_s
     end
+
+    # Parses the response given when the +public_unshare+ action has been 
+    # called. Returns +true+ if successful, otherwise +false+.
+    def public_unshare
+      'unshare_ok' == @xml['status'] ? true : false
+    end
   end
 end

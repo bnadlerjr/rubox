@@ -167,3 +167,9 @@ public_share_response:
     <status>share_ok</status>
     <public_name>ojf3i2n100</public_name>
     </response>
+
+public_unshare_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>unshare_ok</status>
+    </response>

@@ -217,4 +217,18 @@ RESP
       :message => 'Email message',
       :emails => ['john@example.com', 'joe@example.com'])
   end
+
+  def test_can_create_public_unshare_request
+    url = URL_BASE + 
+      "action=public_unshare" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&target=file" + 
+      "&target_id=1"
+   
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.public_unshare(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 1)
+  end
 end
