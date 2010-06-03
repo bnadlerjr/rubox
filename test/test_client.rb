@@ -283,4 +283,23 @@ RESP
     @rubox.get_friends(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
       :params => 'nozip')
   end
+
+  def test_create_add_to_mybox_request
+    url = URL_BASE +
+      "action=add_to_mybox" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&file_id=4940" + 
+      "&folder_id=0" + 
+      "&public_name=some_file" + 
+      "&tags[]=tag1" +
+      "&tags[]=tag2"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.add_to_mybox(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :file_id => 4940,
+      :folder_id => 0,
+      :public_name => 'some_file',
+      :tags => ['tag1', 'tag2'])
+  end
 end

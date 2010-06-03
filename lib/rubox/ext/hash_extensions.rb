@@ -3,7 +3,7 @@ module Rubox
   # Utility functions that can be mixed into +Hash+ objects.
   module HashExtensions
     # Array of key names that should be treated as Array parameters.
-    ARRAY_PARAMS = ['params', 'emails']
+    ARRAY_PARAMS = ['params', 'emails', 'tags']
 
     # Converts the +Hash+ into a querystring. The resulting querystring's keys
     # are sorted in alphabetical order.

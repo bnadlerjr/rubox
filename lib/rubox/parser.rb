@@ -131,5 +131,11 @@ module Rubox
     def get_friends
       @xml['friends']['friends'].map { |f| Friend.build_from_xml(f[1]) }
     end
+
+    # Parses the response given when the +add_to_mybox+ action is invoked. 
+    # Returns +true+ if the file operation was successful, otherwise +false+.
+    def add_to_mybox
+      'addtomybox_ok' == @xml['status'] ? true : false
+    end
   end
 end

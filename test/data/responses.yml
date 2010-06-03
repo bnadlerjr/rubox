@@ -208,3 +208,8 @@ get_friends_response:
     </friends>
     </friends>
     </response>
+add_to_mybox_response:
+    <?xml version='1.0' encoding'UTF-8'?>
+    <response>
+    <status>addtomybox_ok</status>
+    </response>

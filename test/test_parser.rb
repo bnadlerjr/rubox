@@ -175,4 +175,9 @@ class TestParser < Test::Unit::TestCase
     assert actual.count == 1
     compare_friend expected, actual[0]
   end
+
+  def test_can_add_to_mybox
+    parser = Rubox::Parser.new(@responses['add_to_mybox_response'])
+    assert parser.add_to_mybox
+  end
 end
