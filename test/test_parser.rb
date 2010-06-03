@@ -139,4 +139,9 @@ class TestParser < Test::Unit::TestCase
     parser = Rubox::Parser.new(@responses['set_description_response'])
     assert parser.set_description
   end
+
+  def test_can_public_share
+    parser = Rubox::Parser.new(@responses['public_share_response'])
+    assert_equal 'ojf3i2n100', parser.public_share
+  end
 end

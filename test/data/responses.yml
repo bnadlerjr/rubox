@@ -160,3 +160,10 @@ set_description_response:
     <response>
     <status>s_set_description</status>
     </response>
+
+public_share_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>share_ok</status>
+    <public_name>ojf3i2n100</public_name>
+    </response>

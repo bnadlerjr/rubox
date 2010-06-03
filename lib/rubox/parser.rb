@@ -100,5 +100,11 @@ module Rubox
     def set_description
       's_set_description' == @xml['status'] ? true : false
     end
+
+    # Parses the response given when the +public_share+ action has been 
+    # called. Returns the unique identifier of the publicly shared file.
+    def public_share
+      @xml['public_name'].to_s
+    end
   end
 end

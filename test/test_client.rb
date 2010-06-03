@@ -83,12 +83,13 @@ RESP
       "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
       "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
       "&folder_id=0" + 
-      "&params[]=nozip"
+      "&params[]=nozip" +
+      "&params[]=nofiles"
 
     Rubox::Parser.any_instance.stubs(:get_account_tree)
     @rubox.expects(:http_get).with(url).returns(@response)
     @rubox.get_account_tree(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
-      :folder_id => 0, :params => 'nozip')
+      :folder_id => 0, :params => ['nozip', 'nofiles'])
   end
 
   def test_can_create_a_create_folder_request
@@ -194,5 +195,26 @@ RESP
       :target => 'file',
       :target_id => 1, 
       :description => 'My new description')
+  end
+
+  def test_can_create_public_share_request
+    url = URL_BASE +
+      "action=public_share" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&emails[]=john@example.com" + 
+      "&emails[]=joe@example.com" + 
+      "&message=Email message" + 
+      "&password=foo" +
+      "&target=file" + 
+      "&target_id=1"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.public_share(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 1,
+      :password => 'foo',
+      :message => 'Email message',
+      :emails => ['john@example.com', 'joe@example.com'])
   end
 end
