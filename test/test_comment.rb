@@ -72,6 +72,9 @@ XML
 
     expected.each_with_index do |exp, i|
       compare_comment exp, actual[i]
+      exp.reply_comments.each_with_index do |reply, n|
+        compare_comment reply, actual[i].reply_comments[n]
+      end
     end
   end
 end

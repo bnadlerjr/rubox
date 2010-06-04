@@ -25,6 +25,7 @@ module Rubox
 
     # Creates a new +Comment+ object.
     def initialize
+      @reply_comments = []
       yield self if block_given?
     end
 
@@ -41,10 +42,18 @@ module Rubox
           c.created = element['created'].to_i
           c.avatar_url = element['avatar_url']
 
-          if element['reply-comments']
-            c.reply_comments = []
-            element['reply-comments'].each do |reply|
-              c.reply_comments << Comment.build_from_xml(reply['item'])
+          if element['reply_comments']
+            element['reply_comments'].each do |reply|
+              reply = reply[1]
+              reply_comment = Comment.new do |rc|
+                rc.comment_id = reply['comment_id'].to_i
+                rc.message = reply['message']
+                rc.user_id = reply['user_id'].to_i
+                rc.user_name = reply['user_name']
+                rc.created = reply['created'].to_i
+                rc.avatar_url = reply['avatar_url']
+              end
+              c.reply_comments << reply_comment
             end
           end
         end
