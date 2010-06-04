@@ -54,3 +54,12 @@ def compare_friend(expected, actual)
                  "Failed on #{attribute}"
   end
 end
+
+def compare_comment(expected, actual)
+  attributes = %w[comment_id message user_id user_name created avatar_url]
+  attributes.each do |attribute|
+    assert_equal expected.send(attribute),
+                 actual.send(attribute),
+                 "Failed on #{attribute}"
+  end
+end
