@@ -163,5 +163,12 @@ module Rubox
     def add_comment
       'add_comment_ok' == @xml['status'] ? true : false
     end
+
+    # Parses the response given when the +delete_comment+ action has been 
+    # invoked. Returns +true+ if the deletion was successful, otherwise 
+    # +false+.
+    def delete_comment
+      'delete_comment_ok' == @xml['status'] ? true : false
+    end
   end
 end

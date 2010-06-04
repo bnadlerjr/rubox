@@ -266,6 +266,7 @@ get_comments_response:
     </response>
 
 add_comment_response:
+    <?xml version='1.0' encoding'UTF-8'?>
     <response>
     <status>add_comment_ok</status>
     <comment>
@@ -278,4 +279,10 @@ add_comment_response:
     https://ak3.boxcdn.net/resources/a8dkn0y8ft/img/box_user_avatar_large.png
     </avatar_url>
     </comment>
+    </response>
+
+delete_comment_response:
+    <?xml version='1.0' encoding'UTF-8'?>
+    <response>
+    <status>delete_comment_ok</status>
     </response>

@@ -244,4 +244,9 @@ class TestParser < Test::Unit::TestCase
     parser = Rubox::Parser.new(@responses['add_comment_response'])
     assert parser.add_comment
   end
+
+  def test_can_delete_comment
+    parser = Rubox::Parser.new(@responses['delete_comment_response'])
+    assert parser.delete_comment
+  end
 end
