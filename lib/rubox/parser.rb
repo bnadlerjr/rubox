@@ -157,5 +157,11 @@ module Rubox
     def get_comments
       Comment.build_from_xml(@xml['comments'])
     end
+
+    # Parses the response given when the +add_comment+ action has been called. 
+    # Returns +true+ if the comment was successfully added, otherwise +false+.
+    def add_comment
+      'add_comment_ok' == @xml['status'] ? true : false
+    end
   end
 end

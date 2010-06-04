@@ -264,3 +264,18 @@ get_comments_response:
     </comment>
     </comments>
     </response>
+
+add_comment_response:
+    <response>
+    <status>add_comment_ok</status>
+    <comment>
+    <comment_id>1108388</comment_id>
+    <message>API</message>
+    <user_id>3712136</user_id>
+    <user_name>Jeremy Glassenberg</user_name>
+    <created>1265662263</created>
+    <avatar_url>
+    https://ak3.boxcdn.net/resources/a8dkn0y8ft/img/box_user_avatar_large.png
+    </avatar_url>
+    </comment>
+    </response>

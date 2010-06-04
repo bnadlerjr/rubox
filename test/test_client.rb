@@ -345,4 +345,20 @@ RESP
       :target => 'file',
       :target_id => 3522216)
   end
+
+  def test_can_create_add_comment_request
+     url = URL_BASE +
+      "action=add_comment" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&message=Some message." +
+      "&target=file" + 
+      "&target_id=3522216"
+
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.add_comment(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :message => 'Some message.',
+      :target => 'file',
+      :target_id => 3522216)
+  end
 end

@@ -239,4 +239,9 @@ class TestParser < Test::Unit::TestCase
       end
     end
   end
+
+  def test_can_add_comment
+    parser = Rubox::Parser.new(@responses['add_comment_response'])
+    assert parser.add_comment
+  end
 end
