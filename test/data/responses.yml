@@ -230,3 +230,37 @@ export_tags_response:
     <tag id="38">tag2</tag>
     </tags>
     </response>
+
+get_comments_response:
+    <?xml version='1.0' encoding'UTF-8'?>
+    <response>
+    <status>get_comments_ok</status>
+    <comments>
+    <comment>
+    <comment_id>1108492</comment_id>
+    <message>sample comment</message>
+    <user_id>37135</user_id>
+    <user_name>Example2</user_name>
+    <created>1265632080</created>
+    <avatar_url>https://ak3.boxcdn.net/resources/a8dkn0rr/img/box_user_avatar_large.png</avatar_url>
+    <reply_comments>
+    <item>
+    <comment_id>1108498</comment_id>
+    <message>sub-comment</message>
+    <user_id>37131</user_id>
+    <user_name>Example</user_name>
+    <created>1265111091</created>
+    <avatar_url>https://ak3.boxcdn.net/resources/a8dkn0ddd/img/box_user_avatar_large.png</avatar_url>
+    </item>
+    </reply_comments>
+    </comment>
+    <comment>
+    <comment_id>1108494</comment_id>
+    <message>sample</message>
+    <user_id>37131</user_id>
+    <user_name>Example</user_name>
+    <created>1265661223</created>
+    <avatar_url>https://ak3.boxcdn.net/resources/a8dkn0ddd/img/box_user_avatar_large.png</avatar_url>
+    </comment>
+    </comments>
+    </response>

@@ -330,4 +330,19 @@ RESP
     @rubox.expects(:http_get).with(url).returns(@response)
     @rubox.export_tags(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf')
   end
+
+  def test_can_create_get_comments_request
+    url = URL_BASE +
+      "action=get_comments" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&target=file" + 
+      "&target_id=3522216"
+
+    Rubox::Parser.any_instance.stubs(:get_comments)
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.get_comments(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :target => 'file',
+      :target_id => 3522216)
+  end
 end

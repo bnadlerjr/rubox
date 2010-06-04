@@ -194,4 +194,49 @@ class TestParser < Test::Unit::TestCase
     parser = Rubox::Parser.new(@responses['export_tags_response'])
     assert_equal expected, parser.export_tags
   end
+
+  def test_can_get_comments
+    expected = [
+      Rubox::Comment.new do |c|
+        c.comment_id = 1108492
+        c.message = 'sample comment'
+        c.user_id = 37135
+        c.user_name = 'Example2'
+        c.created = 1265632080
+        c.avatar_url = 'https://ak3.boxcdn.net/resources/a8dkn0rr/img/' + 
+          'box_user_avatar_large.png'
+
+        c.reply_comments = [
+          Rubox::Comment.new do |rc|
+            rc.comment_id = 1108498
+            rc.message = 'sub-comment'
+            rc.user_id = 37131
+            rc.user_name = 'Example'
+            rc.created = 1265111091
+            rc.avatar_url = 'https://ak3.boxcdn.net/resources/a8dkn0ddd/' + 
+              'img/box_user_avatar_large.png'
+          end
+        ]
+      end,
+      Rubox::Comment.new do |c|
+        c.comment_id = 1108494
+        c.message = 'sample'
+        c.user_id = 37131
+        c.user_name = 'Example'
+        c.created = 1265661223
+        c.avatar_url = 'https://ak3.boxcdn.net/resources/a8dkn0ddd/img/' + 
+          'box_user_avatar_large.png'
+      end
+    ]
+
+    parser = Rubox::Parser.new(@responses['get_comments_response'])
+    actual = parser.get_comments
+
+    expected.each_with_index do |exp, i|
+      compare_comment exp, actual[i]
+      exp.reply_comments.each_with_index do |reply, n|
+        compare_comment reply, actual[i].reply_comments[n]
+      end
+    end
+  end
 end

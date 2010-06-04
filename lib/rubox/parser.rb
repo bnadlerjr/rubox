@@ -151,5 +151,11 @@ module Rubox
         { :id => t['id'].to_i, :name => t['content'] }
       end
     end
+
+    # Parses the response given when the +get_comments+ action has been 
+    # called. Returns an Array of +Comment+ objects.
+    def get_comments
+      Comment.build_from_xml(@xml['comments'])
+    end
   end
 end
