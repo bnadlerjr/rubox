@@ -63,3 +63,14 @@ def compare_comment(expected, actual)
                  "Failed on #{attribute}"
   end
 end
+
+def compare_search_result(expected, actual)
+  attributes = %w[name search_id match_name match_description 
+                  match_search_text]
+
+  attributes.each do |attribute|
+    assert_equal expected.send(attribute),
+                 actual.send(attribute),
+                 "Failed on #{attribute}"
+  end
+end

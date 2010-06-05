@@ -8,6 +8,7 @@ require "rubox/info"
 require "rubox/parser"
 require "rubox/friend"
 require "rubox/comment"
+require "rubox/search_result"
 
 module Rubox
   VERSION = '0.1.0'
