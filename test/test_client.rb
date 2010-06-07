@@ -373,4 +373,27 @@ RESP
     @rubox.delete_comment(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
       :target_id => 3522216)
   end
+
+  def test_can_create_search_request
+    url = URL_BASE +
+      "action=search" + 
+      "&api_key=rrc1d3ntb53tt6b2vhail6rdtrsxov3v" +
+      "&auth_token=d2dqkrr6bae6ckua17osf9o1fhox9ypf" + 
+      "&direction=asc" + 
+      "&page=1" + 
+      "&params[]=show_path" + 
+      "&per_page=35" + 
+      "&query=test" + 
+      "&sort=relevance"
+
+    Rubox::Parser.any_instance.stubs(:search)
+    @rubox.expects(:http_get).with(url).returns(@response)
+    @rubox.search(:auth_token => 'd2dqkrr6bae6ckua17osf9o1fhox9ypf',
+      :query => 'test',
+      :sort => 'relevance',
+      :page => 1,
+      :per_page => 35,
+      :direction => 'asc',
+      :params => 'show_path')
+  end
 end

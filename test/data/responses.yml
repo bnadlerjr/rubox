@@ -286,3 +286,31 @@ delete_comment_response:
     <response>
     <status>delete_comment_ok</status>
     </response>
+
+search_response:
+    <?xml version='1.0' encoding='UTF-8'?>
+    <response>
+    <status>s_get_files_of_type</status>
+    <folders>
+    <folder>
+    <name>test_folder1</name>
+    <id>45225454</id>
+    <match_type>
+    <name>test-box</name>
+    <description/>
+    <search_text/>
+    </match_type>
+    </folder>
+    </folders> 
+    <files>
+    <file>
+    <name>test1.doc</name>
+    <id>12325454</id>
+    <match_type>
+    <name/>
+    <description/>
+    <search_text>testing-is-cool</search_text>
+    </match_type>
+    </file>
+    </files>
+    </response>

@@ -170,5 +170,15 @@ module Rubox
     def delete_comment
       'delete_comment_ok' == @xml['status'] ? true : false
     end
+
+    # Parses the response given when the +search+ action has been called.
+    # Returns an Array of Folder +SearchResult+s and an Array of File 
+    # +SearchResult+s.
+    def search
+      [@xml['folders'].map do |f|
+        SearchResult.build_from_xml(f[1])
+      end,
+      @xml['files'].map { |f| SearchResult.build_from_xml(f[1]) }]
+    end
   end
 end

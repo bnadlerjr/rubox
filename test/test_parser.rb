@@ -249,4 +249,24 @@ class TestParser < Test::Unit::TestCase
     parser = Rubox::Parser.new(@responses['delete_comment_response'])
     assert parser.delete_comment
   end
+
+  def test_can_search
+    expected = [
+      [Rubox::SearchResult.new do |sr|
+        sr.name = 'test_folder1'
+        sr.search_id = 45225454
+        sr.match_name = 'test-box'
+      end],
+      [Rubox::SearchResult.new do |sr|
+        sr.name = 'test1.doc'
+        sr.search_id = 12325454
+        sr.match_search_text = 'testing-is-cool'
+      end]
+    ]
+
+    parser = Rubox::Parser.new(@responses['search_response'])
+    actual = parser.search
+
+    compare_search_result expected[0][0], actual[0][0]
+  end
 end

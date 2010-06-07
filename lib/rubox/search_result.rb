@@ -22,20 +22,18 @@ module Rubox
     #
     # xml:: The XML graph to create the +SearchResult+ from.
     def self.build_from_xml(xml)
-      xml['folder'] ? parent = xml['folder'] : parent = xml['file']
-
       SearchResult.new do |sr|
-        sr.name = parent['name']
-        sr.search_id = parent['id'].to_i
+        sr.name = xml['name']
+        sr.search_id = xml['id'].to_i
         
-        unless parent['match_type']['name'].empty?
-          sr.match_name = parent['match_type']['name']
+        unless xml['match_type']['name'].empty?
+          sr.match_name = xml['match_type']['name']
         end
-        unless parent['match_type']['description'].empty?
-          sr.match_description = parent['match_type']['description']
+        unless xml['match_type']['description'].empty?
+          sr.match_description = xml['match_type']['description']
         end
-        unless parent['match_type']['search_text'].empty?
-          sr.match_search_text = parent['match_type']['search_text']
+        unless xml['match_type']['search_text'].empty?
+          sr.match_search_text = xml['match_type']['search_text']
         end
       end
     end
