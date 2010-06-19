@@ -5,7 +5,7 @@ A Ruby based client library for the Box.net REST API.
 Bob Nadler, Jr. 
 Website:: http://bobnadler.com
 Email:: thethirdswitch [at] gmail [dot] com
-Docs:: http://bobnadler.com/rubox
+Docs:: http://rdoc.info/projects/rubox
 
 == Installation
 === Git
