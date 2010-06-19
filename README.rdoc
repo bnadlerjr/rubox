@@ -9,7 +9,7 @@ Docs:: http://bobnadler.com/rubox
 
 == Installation
 === Git
-<tt>git clone http://thethirdswitch.github.com/rubox</tt>
+<tt>git clone <pre>http://bnadlerjr.github.com/rubox</pre></tt>
 
 === Gem
 <tt>sudo gem install rubox</tt>
@@ -32,7 +32,7 @@ the API call, the response is parsed by the Rubox::Parser and returned.
 If the response includes an API object, that object is returned (i.e. 
 Rubox::User, Rubox::File, Rubox::Folder, or Rubox::Info).
 
-=== Examples
+=== Usage
 <tt>require "rubox"</tt>
 
 <tt>client = Rubox::Client.new('your_api_key')</tt>
@@ -42,7 +42,21 @@ Rubox::User, Rubox::File, Rubox::Folder, or Rubox::Info).
 <tt>client.set_description(:target => 'file', :target_id => '123', 
 :description => 'My description.') # => true</tt>
 
-== Project Layout
+== Contributing
+
+=== Issues / Roadmap
+Use Github issues[http://github.com/bnadlerjr/rubox/issues] for reporting bug and feature requests. A public version
+of the project is available on Pivotal Tracker[http://www.pivotaltracker.com/projects/92044] for viewing backlog.
+
+=== Patches / Pull Requests
+1. Fork the project.
+2. Create a separate branch for each feature addition or bug fix.
+3. Make your feature addition or bug fix.
+4. Add tests; contributions without tests won't be accepted.
+5. Do not touch VERSION.
+6. Send pull request.
+
+=== Project Layout
 /lib:: Main project source code.
 /test:: All test source code and data samples.
 rakefile:: Rake tasks for the project.
