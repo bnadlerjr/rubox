@@ -9,7 +9,7 @@ Docs:: http://rdoc.info/projects/bnadlerjr/rubox
 
 == Installation
 === Git
-<tt>git clone <pre>http://bnadlerjr.github.com/rubox</pre></tt>
+<tt>git clone [http://bnadlerjr.github.com/rubox]</tt>
 
 === Gem
 <tt>sudo gem install rubox</tt>

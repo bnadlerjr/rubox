@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'bundler'
+Bundler.setup
+
 $:.unshift File.dirname(__FILE__)
 require "rubox/ext/hash_extensions"
 require "rubox/client"

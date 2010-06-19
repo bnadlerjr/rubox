@@ -31,6 +31,6 @@ SUMMARY
                        '--main' << MAIN_RDOC
 
   spec.add_dependency('xml-simple', '>=1.0.12')
+  spec.add_development_dependency('rake', '>=0.8.7')
   spec.add_development_dependency('mocha', '>=0.9.8')
 end
-
