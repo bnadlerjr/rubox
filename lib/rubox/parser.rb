@@ -26,7 +26,7 @@ module Rubox
     end
 
     # Parses the response given when the +logout+ action has been called. 
-    # Returns +true+ if successful. otherwise +False+.
+    # Returns +true+ if successful. otherwise +false+.
     def logout
       'logout_ok' == @xml['status'].to_s ? true : false
     end
@@ -175,9 +175,7 @@ module Rubox
     # Returns an Array of Folder +SearchResult+s and an Array of File 
     # +SearchResult+s.
     def search
-      [@xml['folders'].map do |f|
-        SearchResult.build_from_xml(f[1])
-      end,
+      [@xml['folders'].map { |f| SearchResult.build_from_xml(f[1]) },
       @xml['files'].map { |f| SearchResult.build_from_xml(f[1]) }]
     end
   end

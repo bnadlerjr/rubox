@@ -12,8 +12,8 @@ module Rubox
       @base_url = "https://www.box.net/api/1.0/rest?"
     end
 
-    # Messages sent to +Client+ are dynamcially translated into API compatible 
-    # REST based calls.
+    # Messages sent to +Client+ are dynamcially translated into API 
+    # compatible REST based calls.
     #
     # name:: The name of the API action.
     # args:: Any parameters needed by the action as a +Hash+; or blank.
