@@ -1,4 +1,5 @@
-require 'lib/rubox'
+$: << File.join(File.dirname(__FILE__), 'lib')
+require 'rubox'
 
 TITLE = 'Rubox'
 MAIN_RDOC = 'README.rdoc'

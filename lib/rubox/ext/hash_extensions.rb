@@ -13,7 +13,7 @@ module Rubox
     #
     # === Example
     # { :foo => 1, :bar => 2, :baz => 3 }.to_querystring => "bar=2&baz=3&foo=1"
-    # { :a => 1, :params => ['x', 'y', 'z' }.to_querystring 
+    # { :a => 1, :params => ['x', 'y', 'z'] }.to_querystring 
     #   => "a=1&params[]=x&params[]=y&params[]=z"
     def to_querystring
       sorted = self.sort { |a, b| a[0].to_s<=>b[0].to_s }
@@ -29,6 +29,7 @@ module Rubox
     private
 
     def expand_array_parameter(parameter)
+      parameter[1] = [parameter[1]] unless parameter[1].is_a?(Array)
       parameter[1].map { |p| "#{parameter[0]}[]=#{p}" }.join('&')
     end
   end

@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/test_helper"
+require File.expand_path "#{File.dirname(__FILE__)}/test_helper"
 
 class TestRuboxClient < Test::Unit::TestCase
   URL_BASE = "https://www.box.net/api/1.0/rest?"

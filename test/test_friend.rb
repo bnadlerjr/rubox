@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/test_helper"
+require File.expand_path "#{File.dirname(__FILE__)}/test_helper"
 
 class TestFriend < Test::Unit::TestCase
   def test_can_build_from_xml
@@ -7,7 +7,7 @@ class TestFriend < Test::Unit::TestCase
 <name>email2@example.com</name>
 <email>email2@example.com</email>
 <accepted>1</accepted>
-<avatar_url>http://box.net/index.php?rm=box_user_avatar&user_id=398396&width=40&height=40&type=large</avatar_url>
+<avatar_url>http://box.net/index.php?rm=box_user_avatar&amp;user_id=398396&amp;width=40&amp;height=40&amp;type=large</avatar_url>
 <boxes>
 <box>
 <id>15</id>
