@@ -17,6 +17,12 @@ RESP
     assert_not_nil @rubox
   end
 
+  def test_invalid_method_raises_error
+    assert_raises NoMethodError do
+      @rubox.foo
+    end
+  end
+
   def test_can_create_ticket_request
     url = URL_BASE + 
       "action=get_ticket" +

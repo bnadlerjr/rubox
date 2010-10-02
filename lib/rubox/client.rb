@@ -26,6 +26,8 @@ module Rubox
     # c.set_description(:target => 'file', 
     # :target_id => '123', :description => 'My description.') => true
     def method_missing(name, *args)
+      super unless Parser.instance_methods.include?(name)
+
       params = parse_args(args)
       response = 
         http_get("#{@base_url}action=#{name}&api_key=#{@api_key}#{params}")
